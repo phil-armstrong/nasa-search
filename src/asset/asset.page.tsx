@@ -31,7 +31,12 @@ export const AssetPage: React.FC = () => {
           {data.keywords && (
             <KeywordContainer>
               {data.keywords.map((keyword) => (
-                <Keyword key={keyword}>{keyword}</Keyword>
+                <Keyword
+                  key={keyword}
+                  href={`/search?q=${keyword}`}
+                >
+                  {keyword}
+                </Keyword>
               ))}
             </KeywordContainer>
           )}
@@ -57,8 +62,8 @@ export const KeywordContainer = styled.div`
   align-content: center;
 `;
 
-export const Keyword = styled.span`
-  border: 1 px solid green;
+export const Keyword = styled.a`
+  border: 1px solid green;
   background: green;
   color: white;
   border-radius: 4px;
@@ -66,4 +71,5 @@ export const Keyword = styled.span`
   height: 1em;
   margin-right: 10px;
   margin-bottom: 5px;
+  text-decoration: none;
 `;
