@@ -22,16 +22,16 @@ export const GalleryPage: React.FC = () => {
     history.push(
       `/search?${queryString.stringify({ ...queryParams, ...updatedParams })}`
     );
-  const onSearch = (search: string) => updatedQueryParams({ q: search });
+  const onSearch = (search: string) => updatedQueryParams({ q: search, page: 1 });
   const updatePageNumber = (page: number) => updatedQueryParams({ page });
 
   return (
     <>
       <SearchFieldWrapper>
-        <FontAwesomeIcon icon={faSearch} />
+        <Icon icon={faSearch} />
         <SearchField
           type="text"
-          defaultValue={queryParams.query}
+          defaultValue={queryParams.q}
           onChange={(e) => onSearch(e.target.value)}
         />
       </SearchFieldWrapper>
@@ -57,7 +57,12 @@ export const GalleryPage: React.FC = () => {
   );
 };
 
+export const Icon = styled(FontAwesomeIcon)`
+  vertical-align: middle;
+`;
+
 export const SearchField = styled.input`
+  margin-left: 4px;
   width: 90%;
   border: 1px solid black;
   border-radius: 5px;
