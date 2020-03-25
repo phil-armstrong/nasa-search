@@ -45,7 +45,7 @@ export const GalleryPage: React.FC = () => {
             </p>
             <PaginationControls
               updatePageNumber={updatePageNumber}
-              currentPage={queryParams.page}
+              currentPage={Number(queryParams.page)}
               totalResults={data.collection.metadata.total_hits}
             />
           </div>
