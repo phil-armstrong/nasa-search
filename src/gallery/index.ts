@@ -1,1 +1,1 @@
-export * from './gallery-results';
+export * from './gallery.page';

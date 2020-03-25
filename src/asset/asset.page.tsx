@@ -5,37 +5,49 @@ import { SearchResults } from '../gallery/search-results';
 import styled from 'styled-components';
 import { AssetTitle, AssetPhotographer } from '../styles';
 
-export const AssetPage = () => {
-    const { id } = useParams<{ id: string }>();
-    const [assetImages] = useAxios(`https://images-api.nasa.gov/asset/${id}`);
-    const [assetData] = useAxios<SearchResults>(`https://images-api.nasa.gov/search?nasa_id=${id}`);
+export const AssetPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const [assetImages] = useAxios(`https://images-api.nasa.gov/asset/${id}`);
+  const [assetData] = useAxios<SearchResults>(
+    `https://images-api.nasa.gov/search?nasa_id=${id}`
+  );
 
-    const data = assetData.data ? assetData.data.collection.items[0].data[0] : undefined;
-    const imageUrl = assetImages.data ? assetImages.data.collection.items[0].href : undefined;
+  const data = assetData.data
+    ? assetData.data.collection.items[0].data[0]
+    : undefined;
+  const imageUrl = assetImages.data
+    ? assetImages.data.collection.items[0].href
+    : undefined;
 
-    return <div>
-        {assetImages.data && data &&
-            <>
-                <AssetTitle>{data.title}</AssetTitle>
-                {data.photographer && <AssetPhotographer>by {data.photographer}</AssetPhotographer>}
-                <hr />
-                {data.keywords &&
-                    <KeywordContainer>
-                        {data.keywords.map(keyword => <Keyword key={keyword}>{keyword}</Keyword>)}
-                    </KeywordContainer>
-                }
-                <hr />
-                <div>{data.description}</div>
-                <a href={imageUrl} target="blank">
-                    <AssetImage src={imageUrl} />
-                </a>
-            </>
-        }
-    </div>;
+  return (
+    <div>
+      {assetImages.data && data && (
+        <>
+          <AssetTitle>{data.title}</AssetTitle>
+          {data.photographer && (
+            <AssetPhotographer>by {data.photographer}</AssetPhotographer>
+          )}
+          <hr />
+          {data.keywords && (
+            <KeywordContainer>
+              {data.keywords.map((keyword) => (
+                <Keyword key={keyword}>{keyword}</Keyword>
+              ))}
+            </KeywordContainer>
+          )}
+          <hr />
+          <div>{data.description}</div>
+          <a href={imageUrl} target="blank">
+            <AssetImage src={imageUrl} />
+          </a>
+        </>
+      )}
+    </div>
+  );
 };
 
 export const AssetImage = styled.img`
-width: 100%;
+  width: 100%;
 `;
 
 export const KeywordContainer = styled.div`

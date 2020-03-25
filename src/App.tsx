@@ -5,12 +5,11 @@ import {
   Switch,
   Route,
   Redirect,
-} from "react-router-dom";
-import { GalleryPage } from './gallery';
+} from 'react-router-dom';
 import { AssetPage } from './asset';
+import { GalleryPage } from './gallery';
 
-
-export const App = () => {
+export const App: React.FC = () => {
   return (
     <Container>
       <Title>NASA Search</Title>
