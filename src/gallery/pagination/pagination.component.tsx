@@ -1,7 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+  PaginationWrapper,
+  PaginationPrevious,
+  ButtonText,
+  PaginationNext,
+} from './pagination.styles';
 
 interface PaginationProps {
   updatePageNumber: (page: number) => void;
@@ -38,32 +43,3 @@ export const PaginationControls: React.FC<PaginationProps> = ({
     </PaginationWrapper>
   );
 };
-
-export const PaginationWrapper = styled.div`
-  margin-bottom: 10px;
-`;
-
-export const ButtonText = styled.span`
-  margin: 0 10px;
-`;
-
-export const PaginationButton = styled.button`
-  border: 1px solid black;
-  background: transparent;
-  width: 10em;
-
-  :hover {
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
-  }
-`;
-
-export const PaginationPrevious = styled(PaginationButton)`
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-right: 0;
-`;
-
-export const PaginationNext = styled(PaginationButton)`
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-`;

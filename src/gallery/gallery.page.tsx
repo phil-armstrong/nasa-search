@@ -1,14 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import useAxios from 'axios-hooks';
 import { SearchResults } from './search-results';
 import { useQueryParams } from '../utils/useQueryParams';
 import { useHistory } from 'react-router-dom';
 import * as queryString from 'query-string';
-import { PaginationControls } from './pagination.component';
+import { PaginationControls } from './pagination/pagination.component';
 import { GalleryResults } from './gallery-results';
+import { SearchFieldWrapper, Icon, SearchField } from './gallery.styles';
 
 export const GalleryPage: React.FC = () => {
   const queryParams = useQueryParams({ page: 1, media_type: 'image', q: '' });
@@ -22,7 +21,8 @@ export const GalleryPage: React.FC = () => {
     history.push(
       `/search?${queryString.stringify({ ...queryParams, ...updatedParams })}`
     );
-  const onSearch = (search: string) => updatedQueryParams({ q: search, page: 1 });
+  const onSearch = (search: string) =>
+    updatedQueryParams({ q: search, page: 1 });
   const updatePageNumber = (page: number) => updatedQueryParams({ page });
 
   return (
@@ -32,7 +32,8 @@ export const GalleryPage: React.FC = () => {
         <SearchField
           type="text"
           defaultValue={queryParams.q}
-          onChange={(e) => onSearch(e.target.value)}
+          onChange={(event) => onSearch(event.target.value)}
+          placeholder="search all NASA images"
         />
       </SearchFieldWrapper>
 
@@ -56,20 +57,3 @@ export const GalleryPage: React.FC = () => {
     </>
   );
 };
-
-export const Icon = styled(FontAwesomeIcon)`
-  vertical-align: middle;
-`;
-
-export const SearchField = styled.input`
-  margin-left: 4px;
-  width: 90%;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 5px;
-`;
-
-export const SearchFieldWrapper = styled.div`
-  width: 20em;
-  margin: 0 auto;
-`;

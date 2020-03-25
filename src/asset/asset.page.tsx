@@ -1,12 +1,13 @@
 import React from 'react';
 import useAxios from 'axios-hooks';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { SearchResults } from '../gallery/search-results';
-import styled from 'styled-components';
-import { AssetTitle, AssetPhotographer } from '../styles';
+import { AssetTitle, AssetPhotographer, Button } from '../styles';
+import { KeywordContainer, Keyword, AssetImage } from './asset.styles';
 
 export const AssetPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const history = useHistory();
   const [assetImages] = useAxios(`https://images-api.nasa.gov/asset/${id}`);
   const [assetData] = useAxios<SearchResults>(
     `https://images-api.nasa.gov/search?nasa_id=${id}`
@@ -23,6 +24,7 @@ export const AssetPage: React.FC = () => {
     <div>
       {assetImages.data && data && (
         <>
+          <Button onClick={history.goBack}>Back to Search</Button>
           <AssetTitle>{data.title}</AssetTitle>
           {data.photographer && (
             <AssetPhotographer>by {data.photographer}</AssetPhotographer>
@@ -31,10 +33,7 @@ export const AssetPage: React.FC = () => {
           {data.keywords && (
             <KeywordContainer>
               {data.keywords.map((keyword) => (
-                <Keyword
-                  key={keyword}
-                  href={`/search?q=${keyword}`}
-                >
+                <Keyword key={keyword} href={`/search?q=${keyword}`}>
                   {keyword}
                 </Keyword>
               ))}
@@ -50,26 +49,3 @@ export const AssetPage: React.FC = () => {
     </div>
   );
 };
-
-export const AssetImage = styled.img`
-  width: 100%;
-`;
-
-export const KeywordContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-`;
-
-export const Keyword = styled.a`
-  border: 1px solid green;
-  background: green;
-  color: white;
-  border-radius: 4px;
-  padding: 5px 10px;
-  height: 1em;
-  margin-right: 10px;
-  margin-bottom: 5px;
-  text-decoration: none;
-`;

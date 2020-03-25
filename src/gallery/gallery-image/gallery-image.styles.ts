@@ -12,6 +12,10 @@ export const GalleryCard = styled.a`
 
   @media (min-width: 1000px) {
     width: 240px;
+
+    :hover {
+      box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    }
   }
 `;
 

@@ -24,3 +24,18 @@ export const AssetTitle = styled.h2`
     font-size: 1.25em;
   }
 `;
+
+export const Button = styled.button`
+  border: 1px solid black;
+  background: transparent;
+  width: 10em;
+  border-radius: 5px;
+
+  :disabled {
+    cursor: no-drop;
+  }
+
+  :hover:enabled {
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  }
+`;
