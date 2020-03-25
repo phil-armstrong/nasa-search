@@ -42,7 +42,7 @@ export const AssetPage: React.FC = () => {
           <hr />
           <div>{data.description}</div>
           <a href={imageUrl} target="blank">
-            <AssetImage src={imageUrl} />
+            <AssetImage src={imageUrl} alt={data.title} />
           </a>
         </>
       )}

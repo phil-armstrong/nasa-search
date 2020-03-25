@@ -15,7 +15,7 @@ export const GalleryAsset: React.FC<{ asset: Item }> = ({ asset }) => {
     <>
       <GalleryCard href={encodeURI(`asset/${data.nasa_id}`)}>
         <GalleryImageWrapper>
-          <GalleryImage src={previewImage.href} />
+          <GalleryImage src={previewImage.href} alt={data.title} />
         </GalleryImageWrapper>
         <AssetTitle>{data.title}</AssetTitle>
         {data.photographer && (

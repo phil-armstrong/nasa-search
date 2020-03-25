@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import * as queryString from 'query-string';
 import { PaginationControls } from './pagination/pagination.component';
 import { GalleryResults } from './gallery-results';
-import { SearchFieldWrapper, Icon, SearchField } from './gallery.styles';
+import { SearchFieldWrapper, Icon, SearchField, Label } from './gallery.styles';
 
 export const GalleryPage: React.FC = () => {
   const queryParams = useQueryParams({ page: 1, media_type: 'image', q: '' });
@@ -28,8 +28,12 @@ export const GalleryPage: React.FC = () => {
   return (
     <>
       <SearchFieldWrapper>
-        <Icon icon={faSearch} />
+        <Label htmlFor="search">
+          <span>Search</span>
+          <Icon icon={faSearch} />
+        </Label>
         <SearchField
+          id="search"
           type="text"
           defaultValue={queryParams.q}
           onChange={(event) => onSearch(event.target.value)}

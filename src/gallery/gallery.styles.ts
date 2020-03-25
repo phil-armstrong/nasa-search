@@ -7,7 +7,7 @@ export const Icon = styled(FontAwesomeIcon)`
 
 export const SearchField = styled.input`
   margin-left: 4px;
-  width: 90%;
+  width: 20em;
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
@@ -18,6 +18,14 @@ export const SearchField = styled.input`
 `;
 
 export const SearchFieldWrapper = styled.div`
-  width: 20em;
+  width: 30em;
   margin: 0 auto;
+`;
+
+export const Label = styled.label`
+  width: 10em;
+
+  span {
+    margin-right: 5px;
+  }
 `;
