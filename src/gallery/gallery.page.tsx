@@ -2,7 +2,7 @@ import React from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import useAxios from 'axios-hooks';
 import { SearchResults } from './search-results';
-import { useQueryParams } from '../utils/useQueryParams';
+import { useQueryParams } from '../utils/useQueryParams.hook';
 import { useHistory } from 'react-router-dom';
 import * as queryString from 'query-string';
 import { PaginationControls } from './pagination/pagination.component';

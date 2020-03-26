@@ -28,6 +28,7 @@ export const PaginationControls: React.FC<PaginationProps> = ({
         disabled={!hasPrevious}
         onClick={() => updatePageNumber(currentPage - 1)}
         type="button"
+        data-testid="previous-button"
       >
         <FontAwesomeIcon icon={faArrowLeft} />
         <ButtonText>Prev</ButtonText>
@@ -36,6 +37,7 @@ export const PaginationControls: React.FC<PaginationProps> = ({
         disabled={!hasNext}
         onClick={() => updatePageNumber(currentPage + 1)}
         type="button"
+        data-testid="next-button"
       >
         <ButtonText>Next</ButtonText>
         <FontAwesomeIcon icon={faArrowRight} />
